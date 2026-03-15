@@ -1,0 +1,250 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Julian & Sofia - Wedding Invitation</title>
+    <link href="https://fonts.googleapis.com/css2?family=Great+Vibes&family=Playfair+Display:ital@0;1&family=Montserrat:wght@200;400&display=swap" rel="stylesheet">
+    <style>
+        :root {
+            --gold: #d4a373;
+            --cream: #fffaf0;
+            --text: #3d405b;
+            --overlay: rgba(0, 0, 0, 0.2);
+        }
+
+        body, html {
+            margin: 0;
+            padding: 0;
+            overflow-x: hidden;
+            background-color: var(--cream);
+            font-family: 'Montserrat', sans-serif;
+            color: var(--text);
+            scroll-behavior: smooth;
+        }
+
+        /* 1. MOVABLE HERO SECTION */
+        .parallax-container {
+            position: relative;
+            height: 100vh;
+            width: 100%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            overflow: hidden;
+            background: #222;
+        }
+
+        .bg-layer {
+            position: absolute;
+            top: -10%; left: -10%;
+            width: 120%; height: 120%;
+            background: linear-gradient(var(--overlay), var(--overlay)), 
+                        url('https://images.unsplash.com/photo-1519741497674-611481863552?auto=format&fit=crop&q=80&w=2000') no-repeat center center/cover;
+            z-index: 1;
+            transition: transform 0.1s ease-out;
+        }
+
+        .content-layer {
+            position: relative;
+            z-index: 10;
+            text-align: center;
+            color: white;
+            pointer-events: none;
+        }
+
+        h1 {
+            font-family: 'Great Vibes', cursive;
+            font-size: clamp(4rem, 12vw, 8rem);
+            margin: 0;
+            text-shadow: 0 10px 30px rgba(0,0,0,0.3);
+        }
+
+        .subtitle {
+            font-family: 'Playfair Display', serif;
+            font-style: italic;
+            font-size: 1.2rem;
+            letter-spacing: 6px;
+            text-transform: uppercase;
+            margin-bottom: 10px;
+        }
+
+        /* 2. FLOATING PETALS CANVAS */
+        #petal-canvas {
+            position: absolute;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
+            z-index: 5;
+            pointer-events: none;
+        }
+
+        /* 3. INFO SECTIONS */
+        section {
+            padding: 100px 20px;
+            text-align: center;
+            max-width: 900px;
+            margin: 0 auto;
+        }
+
+        .venue-title {
+            font-family: 'Playfair Display', serif;
+            font-size: 2.5rem;
+            color: var(--gold);
+            margin-bottom: 10px;
+        }
+
+        /* 4. MAP STYLING */
+        .map-wrapper {
+            margin: 40px 0;
+            position: relative;
+            border-radius: 20px;
+            overflow: hidden;
+            box-shadow: 0 20px 50px rgba(0,0,0,0.1);
+            border: 8px solid white;
+        }
+
+        iframe {
+            width: 100%;
+            height: 450px;
+            border: 0;
+            display: block;
+            /* Romantic map filter */
+            filter: sepia(0.2) contrast(0.9) brightness(1.05);
+        }
+
+        .rsvp-btn {
+            display: inline-block;
+            padding: 20px 60px;
+            background-color: var(--gold);
+            color: white;
+            text-decoration: none;
+            border-radius: 50px;
+            letter-spacing: 2px;
+            font-weight: 400;
+            transition: all 0.3s ease;
+            box-shadow: 0 10px 20px rgba(212, 163, 115, 0.3);
+        }
+
+        .rsvp-btn:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 15px 30px rgba(212, 163, 115, 0.5);
+            background-color: #bc8a5f;
+        }
+
+        footer {
+            padding: 50px;
+            opacity: 0.6;
+            font-size: 0.9rem;
+        }
+    </style>
+</head>
+<body>
+
+    <div class="parallax-container" id="scene">
+        <div class="bg-layer" id="bg"></div>
+        <canvas id="petal-canvas"></canvas>
+        
+        <div class="content-layer" id="text">
+            <p class="subtitle">The wedding of</p>
+            <h1>Bahman & Nihad</h1>
+            
+            <p class="subtitle">June 20, 2026</p>
+        </div>
+    </div>
+
+    <section id="location">
+        <h2 class="venue-title">Mekan</h2>
+        <p style="font-size: 1.2rem; line-height: 1.6;">
+            Sizi gosterilen mekanda qarsilamaqdan memnun duyariq<br>
+            <strong>Hollywood Şadlıq Sarayı</strong><br>
+            Baku, Azerbaijan
+        </p>
+
+        <div class="map-wrapper">
+            <iframe 
+                src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d3037.915724597334!2d49.83674467655071!3d40.421817055331584!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x40307d67245666c5%3A0x95d4e131203d1ec5!2sHollywood%20%C5%9Eadl%C4%B1q%20Saray%C4%B1!5e0!3m2!1sen!2saz!4v1700000000000!5m2!1sen!2saz" 
+                allowfullscreen="" 
+                loading="lazy">
+            </iframe>
+        </div>
+
+        <p>Rəqs və şənlik gecəsi sizi gözləyir.</p>
+        <br>
+        <a href="#" class="rsvp-btn">By Sariyev</a>
+    </section>
+
+    <footer>
+        <p>Bahmana mexsusdur &hearts; 2026</p>
+    </footer>
+
+    <script>
+        // 1. MOUSE PARALLAX EFFECT
+        const bg = document.getElementById('bg');
+        const text = document.getElementById('text');
+
+        document.addEventListener('mousemove', (e) => {
+            let x = (e.clientX / window.innerWidth) - 0.5;
+            let y = (e.clientY / window.innerHeight) - 0.5;
+
+            // Background shifts slightly
+            bg.style.transform = `translate(${x * 30}px, ${y * 30}px) scale(1.1)`;
+            // Text shifts more for a layered effect
+            text.style.transform = `translate(${x * -70}px, ${y * -70}px)`;
+        });
+
+        // 2. FALLING PETALS ANIMATION
+        const canvas = document.getElementById('petal-canvas');
+        const ctx = canvas.getContext('2d');
+        canvas.width = window.innerWidth;
+        canvas.height = window.innerHeight;
+
+        const petals = [];
+        class Petal {
+            constructor() {
+                this.x = Math.random() * canvas.width;
+                this.y = Math.random() * canvas.height - canvas.height;
+                this.size = Math.random() * 8 + 4;
+                this.speed = Math.random() * 1.5 + 0.5;
+                this.angle = Math.random() * 360;
+                this.spin = Math.random() * 0.2 - 0.1;
+                this.horizontalDrift = Math.random() * 1 - 0.5;
+            }
+            draw() {
+                ctx.save();
+                ctx.translate(this.x, this.y);
+                ctx.rotate(this.angle * Math.PI / 180);
+                ctx.beginPath();
+                // Draws a small petal shape
+                ctx.ellipse(0, 0, this.size, this.size/1.5, 0, 0, Math.PI * 2);
+                ctx.fillStyle = 'rgba(255, 182, 193, 0.7)'; // Soft Pink
+                ctx.fill();
+                ctx.restore();
+            }
+            update() {
+                this.y += this.speed;
+                this.x += Math.sin(this.y / 60) + this.horizontalDrift;
+                this.angle += this.spin;
+                if (this.y > canvas.height) {
+                    this.y = -20;
+                    this.x = Math.random() * canvas.width;
+                }
+            }
+        }
+
+        // Create 60 petals
+        for (let i = 0; i < 60; i++) petals.push(new Petal());
+
+        function animate() {
+            ctx.clearRect(0, 0, canvas.width, canvas.height);
+            petals.forEach(p => { p.update(); p.draw(); });
+            requestAnimationFrame(animate);
+        }
+        animate();
+
+        window.addEventListener('resize', () => {
+            canvas.width = window.innerWidth;
+            canvas.height = window.innerHeight;
+        });
+    </script>
+</body>
+</html>
